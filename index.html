@@ -2,81 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vladimir Rujin — AI Evaluation Specialist</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vladimir Rujin — Sales & Business Development</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --navy:       #0D1F3C;
-      --navy-mid:   #1B4F8A;
-      --sky:        #5B9BD5;
-      --bg:         #F4F7FA;
-      --white:      #FFFFFF;
-      --charcoal:   #2D3436;
-      --muted:      #6C7A89;
-      --border:     #DDE4ED;
-      --card-bg:    #FFFFFF;
+      --bg:         #09101f;
+      --surface:    #0d1525;
+      --card:       #101828;
+      --border:     #1a2640;
+      --gold:       #c8a84b;
+      --gold-dim:   rgba(200,168,75,0.12);
+      --blue:       #4a8fd4;
+      --text:       #dde3f0;
+      --text-dim:   #8896b0;
+      --text-muted: #4e5e78;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
-      color: var(--charcoal);
+      color: var(--text);
       line-height: 1.7;
+      overflow-x: hidden;
     }
 
-    a { color: var(--sky); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { color: #e0c06a; }
 
-    /* ── COVER ───────────────────────────────────── */
+    /* ── SCROLL ANIMATIONS ───────────────────────── */
+    [data-animate] {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    [data-animate].visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    [data-animate][data-delay="100"] { transition-delay: 0.10s; }
+    [data-animate][data-delay="200"] { transition-delay: 0.20s; }
+    [data-animate][data-delay="300"] { transition-delay: 0.30s; }
+    [data-animate][data-delay="400"] { transition-delay: 0.40s; }
+
+    /* ── HERO ───────────────────────────────────── */
     .cover {
-      background: var(--navy);
-      color: white;
-      padding: 80px 60px 70px;
+      background: var(--surface);
+      padding: 110px 64px 84px;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid var(--border);
     }
 
     .cover::before {
       content: '';
       position: absolute;
-      width: 500px; height: 500px;
+      width: 700px; height: 700px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(91,155,213,0.12), transparent 70%);
-      top: -160px; right: -80px;
+      background: radial-gradient(circle, rgba(200,168,75,0.055), transparent 65%);
+      top: -260px; right: -120px;
+      pointer-events: none;
+    }
+
+    .cover::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(74,143,212,0.045), transparent 70%);
+      bottom: -160px; left: -60px;
       pointer-events: none;
     }
 
     .cover-tag {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: var(--sky);
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      color: var(--gold);
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
+      font-weight: 500;
     }
 
     .cover h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(40px, 6vw, 72px);
-      font-weight: 300;
-      line-height: 1.1;
-      margin-bottom: 12px;
-      color: #FFFFFF;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 9vw, 104px);
+      font-weight: 400;
+      line-height: 0.92;
+      color: #ffffff;
+      margin-bottom: 28px;
+      letter-spacing: -0.01em;
+    }
+
+    .cover h1 .last {
+      color: var(--gold);
+      font-style: italic;
     }
 
     .cover-subtitle {
-      font-size: 15px;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 8px;
-      font-weight: 400;
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+      letter-spacing: 0.06em;
     }
 
     .cover-location {
-      font-size: 13px;
-      color: rgba(255,255,255,0.35);
-      margin-bottom: 36px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 44px;
     }
 
     .lang-pills {
@@ -86,69 +121,100 @@
     }
 
     .pill {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.8);
-      padding: 5px 16px;
+      background: rgba(200,168,75,0.07);
+      border: 1px solid rgba(200,168,75,0.22);
+      color: rgba(200,168,75,0.8);
+      padding: 5px 18px;
       border-radius: 100px;
-      font-size: 12px;
-      letter-spacing: 1px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 64px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint::before {
+      content: '';
+      display: block;
+      width: 36px;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.35;
     }
 
     /* ── LAYOUT ──────────────────────────────────── */
     main {
-      max-width: 900px;
+      max-width: 940px;
       margin: 0 auto;
-      padding: 64px 40px 100px;
+      padding: 88px 44px 120px;
     }
 
-    .section {
-      margin-bottom: 60px;
-    }
+    .section { margin-bottom: 84px; }
 
     .section-tag {
       font-size: 10px;
-      letter-spacing: 4px;
-      color: var(--sky);
+      letter-spacing: 0.2em;
+      color: var(--gold);
       text-transform: uppercase;
       margin-bottom: 8px;
+      font-weight: 500;
     }
 
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(26px, 3.5vw, 38px);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 42px);
       font-weight: 400;
-      color: var(--navy);
-      margin-bottom: 32px;
-      padding-bottom: 14px;
+      color: #ffffff;
+      margin-bottom: 36px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--border);
+      line-height: 1.15;
     }
 
-    /* ── ABOUT ───────────────────────────────────── */
+    /* ── ABOUT ────────────────────────────────────── */
     .about-text {
       font-size: 15px;
-      color: #4A5568;
-      line-height: 1.85;
-      max-width: 740px;
+      color: var(--text-dim);
+      line-height: 1.92;
+      max-width: 780px;
     }
 
-    /* ── EXPERIENCE CARDS ────────────────────────── */
+    .about-text strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    /* ── EXPERIENCE CARDS ─────────────────────────── */
     .exp-card {
-      background: var(--card-bg);
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 20px;
+      border-radius: 3px;
+      padding: 32px 38px;
+      margin-bottom: 18px;
       position: relative;
       overflow: hidden;
+      transition: border-color 0.3s ease;
     }
 
-    .exp-card::after {
+    .exp-card:hover { border-color: rgba(200,168,75,0.28); }
+
+    .exp-card::before {
       content: '';
       position: absolute;
-      bottom: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--navy-mid), var(--sky));
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent 60%);
+      opacity: 0.55;
     }
 
     .exp-header {
@@ -161,93 +227,188 @@
     }
 
     .exp-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--navy);
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #ffffff;
     }
 
     .exp-date {
-      font-size: 12px;
-      color: var(--muted);
-      background: var(--bg);
-      padding: 3px 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      padding: 3px 12px;
       border-radius: 20px;
       white-space: nowrap;
     }
 
     .exp-company {
-      font-size: 13px;
-      color: var(--sky);
-      margin-bottom: 14px;
+      font-size: 12.5px;
+      color: var(--gold);
+      margin-bottom: 18px;
       font-style: italic;
+      opacity: 0.75;
     }
 
-    .exp-card ul {
-      padding-left: 18px;
-    }
+    .exp-card ul { list-style: none; }
 
     .exp-card ul li {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      margin-bottom: 7px;
+      line-height: 1.7;
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .exp-card ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      opacity: 0.45;
+    }
+
+    /* ── TRACK RECORD / CASE STUDY ─────────────────── */
+    .results-hero {
+      background: linear-gradient(140deg, #0d1a30 0%, #090f1d 100%);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 52px;
+      text-align: center;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .results-hero::before {
+      content: '';
+      position: absolute;
+      width: 360px; height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,168,75,0.07), transparent 70%);
+      top: -140px; right: -60px;
+    }
+
+    .results-label {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .results-numbers {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .results-numbers .num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 6vw, 64px);
+      font-weight: 400;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .results-numbers .num.gold { color: var(--gold); }
+
+    .results-numbers .arrow {
+      font-size: 32px;
+      color: var(--gold);
+      opacity: 0.5;
+      font-weight: 300;
+    }
+
+    .results-sub {
+      margin-top: 18px;
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .outcome-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .outcome-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 24px 28px;
+      transition: border-color 0.3s ease;
+    }
+
+    .outcome-card:hover { border-color: rgba(200,168,75,0.22); }
+
+    .outcome-card strong {
+      display: block;
+      font-family: 'Playfair Display', serif;
       font-size: 14px;
-      color: #4A5568;
-      margin-bottom: 5px;
+      font-weight: 500;
+      color: #ffffff;
+      margin-bottom: 7px;
+    }
+
+    .outcome-card p {
+      font-size: 13px;
+      color: var(--text-dim);
       line-height: 1.65;
     }
 
     /* ── SKILLS ──────────────────────────────────── */
-    .skills-group {
-      margin-bottom: 20px;
-    }
+    .skills-group { margin-bottom: 26px; }
 
     .skills-label {
       font-size: 10px;
       font-weight: 600;
-      letter-spacing: 2px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
     }
 
-    .skills-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
     .skill-tag {
-      background: var(--white);
+      background: var(--card);
       border: 1px solid var(--border);
-      color: var(--charcoal);
-      padding: 5px 14px;
-      border-radius: 6px;
+      color: var(--text-dim);
+      padding: 5px 16px;
+      border-radius: 3px;
       font-size: 13px;
+      transition: border-color 0.2s ease, color 0.2s ease;
     }
 
-    /* ── TWO COLUMN ──────────────────────────────── */
+    .skill-tag:hover {
+      border-color: rgba(200,168,75,0.28);
+      color: var(--text);
+    }
+
+    /* ── TWO COL ─────────────────────────────────── */
     .two-col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 40px;
-    }
-
-    @media (max-width: 620px) {
-      .two-col { grid-template-columns: 1fr; }
-      .cover { padding: 50px 28px; }
-      main { padding: 40px 20px 80px; }
+      gap: 52px;
     }
 
     /* ── LANGUAGES ───────────────────────────────── */
     .lang-row {
       display: flex;
       justify-content: space-between;
-      padding: 10px 0;
+      padding: 12px 0;
       border-bottom: 1px solid var(--border);
       font-size: 14px;
     }
-
     .lang-row:last-child { border-bottom: none; }
-
-    .lang-name { font-weight: 600; color: var(--navy); }
-    .lang-level { color: var(--muted); font-style: italic; }
+    .lang-name { font-weight: 500; color: #ffffff; }
+    .lang-level { color: var(--text-muted); font-style: italic; font-size: 13px; }
 
     /* ── EDUCATION ───────────────────────────────── */
     .edu-item {
@@ -259,155 +420,205 @@
       padding: 14px 0;
       border-bottom: 1px solid var(--border);
     }
-
     .edu-item:last-child { border-bottom: none; }
-    .edu-school { font-weight: 600; color: var(--navy); font-size: 14px; }
-    .edu-degree { color: var(--muted); font-size: 13px; margin-top: 2px; }
-    .edu-date { font-size: 12px; color: var(--muted); }
+    .edu-school { font-weight: 500; color: #ffffff; font-size: 14px; }
+    .edu-degree { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+    .edu-date { font-size: 12px; color: var(--text-muted); }
 
     /* ── CONTACT ─────────────────────────────────── */
-    .contact-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
+    .contact-grid { display: flex; flex-direction: column; gap: 16px; }
 
     .contact-item {
-      font-size: 14px;
-      color: #4A5568;
       display: flex;
-      gap: 10px;
+      gap: 18px;
       align-items: center;
+      font-size: 14px;
     }
 
     .contact-label {
       font-size: 10px;
-      letter-spacing: 2px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--muted);
-      width: 70px;
+      color: var(--text-muted);
+      width: 82px;
       flex-shrink: 0;
     }
+
+    .contact-item a, .contact-item span { color: var(--text-dim); }
+    .contact-item a:hover { color: var(--gold); }
 
     /* ── FOOTER ──────────────────────────────────── */
     footer {
       text-align: center;
-      padding: 28px;
-      font-size: 12px;
-      color: var(--muted);
+      padding: 32px;
+      font-size: 11px;
+      color: var(--text-muted);
       border-top: 1px solid var(--border);
-      background: var(--white);
+      background: var(--surface);
+      letter-spacing: 0.07em;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 660px) {
+      .cover { padding: 64px 28px 64px; }
+      .scroll-hint { left: 28px; }
+      main { padding: 52px 22px 80px; }
+      .two-col { grid-template-columns: 1fr; gap: 0; }
+      .outcome-grid { grid-template-columns: 1fr; }
+      .results-hero { padding: 36px 24px; }
+      .exp-card { padding: 24px 22px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- COVER -->
+  <!-- HERO -->
   <header class="cover">
-    <div class="cover-tag">Portfolio — AI Evaluation & Business Consulting</div>
-    <h1>Vladimir Rujin</h1>
-    <div class="cover-subtitle">AI Evaluation Specialist &amp; Business Consultant</div>
-    <div class="cover-location">Montreal, Quebec, Canada &nbsp;·&nbsp; Remote</div>
+    <div class="cover-tag">Portfolio — Sales &amp; Business Development</div>
+    <h1>Vladimir<br><span class="last">Rujin</span></h1>
+    <div class="cover-subtitle">Sales &amp; Business Development &nbsp;·&nbsp; AI Evaluation Specialist</div>
+    <div class="cover-location">Montreal, Canada &nbsp;·&nbsp; Currently in Moscow, Russia &nbsp;·&nbsp; Remote Worldwide</div>
     <div class="lang-pills">
       <span class="pill">English — Native</span>
       <span class="pill">French — Native</span>
       <span class="pill">Russian — Native</span>
     </div>
+    <div class="scroll-hint">Scroll to explore</div>
   </header>
 
   <main>
 
     <!-- ABOUT -->
     <section class="section">
-      <div class="section-tag">Introduction</div>
-      <h2 class="section-title">Professional Summary</h2>
-      <p class="about-text">
-        Strategic and results-driven professional with 5+ years of experience in sales consulting, business development, and structured analytical work. Founded and scaled a revenue growth agency serving SMB clients across multiple industries. Proven track record of designing performance frameworks, evaluating business systems, and delivering measurable outcomes.
+      <div class="section-tag" data-animate>Introduction</div>
+      <h2 class="section-title" data-animate data-delay="100">Professional Summary</h2>
+      <p class="about-text" data-animate data-delay="200">
+        Strategic professional with <strong>5+ years of experience</strong> in sales consulting, business development, and structured analytical work. Founded and scaled a revenue growth agency serving SMB clients across multiple industries — delivering measurable results through systematic execution, not guesswork.
         <br><br>
-        Trilingual in English, French, and Russian — with professional-level written and verbal communication in all three languages. Brings a consultant's precision and a founder's accountability to every engagement. Accuracy and structured thinking take priority over speed.
+        Trilingual in <strong>English, French, and Russian</strong> with professional-level written and verbal communication in all three. Combines the precision of a consultant with the accountability of a founder. Structured thinking and accuracy take priority in every engagement.
       </p>
     </section>
 
     <!-- EXPERIENCE -->
     <section class="section">
-      <div class="section-tag">Career</div>
-      <h2 class="section-title">Work Experience</h2>
+      <div class="section-tag" data-animate>Career</div>
+      <h2 class="section-title" data-animate data-delay="100">Work Experience</h2>
 
-      <div class="exp-card">
+      <div class="exp-card" data-animate data-delay="100">
         <div class="exp-header">
-          <div class="exp-title">Founder &amp; Head of Sales Agency</div>
-          <div class="exp-date">Jan 2024 — Present</div>
+          <div class="exp-title">Founder &amp; Head of Sales</div>
+          <div class="exp-date">Jan 2024 — Feb 2026</div>
         </div>
-        <div class="exp-company">Independent Sales &amp; Growth Consulting Agency · Singapore / Remote</div>
+        <div class="exp-company">Sales Development Consulting Agency · Belgrade, Serbia / Remote</div>
         <ul>
-          <li>Founded and scaled a consulting agency focused on revenue growth for SMB clients across multiple industries</li>
-          <li>Increased client monthly revenue from $10K–$40K to $150K–$200K through structured sales system implementation</li>
-          <li>Designed customer acquisition strategies including funnel architecture, sales scripts, and lead management processes</li>
-          <li>Built KPI frameworks and forecasting systems to track, measure, and improve sales performance</li>
-          <li>Partnered directly with business owners and senior stakeholders, delivering strategic advisory at C-suite level</li>
+          <li>Founded and scaled a consulting agency specialising in revenue growth for SMB clients across multiple industries</li>
+          <li>Scaled multiple clients from $10K–$40K to $150K–$200K in monthly revenue through structured sales system implementation</li>
+          <li>Built and structured a 6-person sales team distributed across multiple timezones to widen client reach and market coverage</li>
+          <li>Designed customer acquisition strategies: funnel architecture, scripts, and lead management systems</li>
+          <li>Implemented KPI frameworks and forecasting systems to track and improve sales performance</li>
+          <li>Worked directly with business owners and senior leadership as a strategic advisor and sales consultant</li>
+          <li>Optimised conversion across all funnel stages, delivering consistent and scalable revenue growth</li>
         </ul>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-animate data-delay="200">
         <div class="exp-header">
           <div class="exp-title">Freelance Marketing &amp; Lead Generation Specialist</div>
           <div class="exp-date">Jan 2019 — Jan 2024</div>
         </div>
         <div class="exp-company">Self-Employed · Remote</div>
         <ul>
-          <li>Built scalable lead generation systems using paid acquisition, landing pages, and email sequences for SMB clients</li>
-          <li>Designed and deployed end-to-end marketing funnels to generate qualified, predictable pipeline flow</li>
-          <li>Improved client conversion rates through optimization of user journeys and customer touchpoints</li>
+          <li>Built scalable lead generation systems using paid traffic, landing pages, and email sequences for SMB clients</li>
+          <li>Developed end-to-end marketing funnels to generate qualified, predictable pipeline flow</li>
+          <li>Improved client conversion through user journey optimisation and touchpoint analysis</li>
+          <li>Developed custom growth strategies and consulted on revenue scaling across industries and markets</li>
           <li>Evaluated and reported on campaign performance using Google Analytics and CRM platforms</li>
         </ul>
       </div>
 
-      <div class="exp-card">
+      <div class="exp-card" data-animate data-delay="300">
         <div class="exp-header">
-          <div class="exp-title">Independent Reseller &amp; Product Restoration Entrepreneur</div>
+          <div class="exp-title">Entrepreneur — Resale &amp; Product Restoration</div>
           <div class="exp-date">2017 — 2019</div>
         </div>
         <div class="exp-company">Self-Employed · Local Market</div>
         <ul>
-          <li>Built and operated a profitable resale business focused on musical instruments, achieving margins of 200–300%</li>
-          <li>Managed full business cycle: sourcing, pricing strategy, refurbishment coordination, and sales execution</li>
-          <li>Developed commercial acumen in pricing, negotiation, and opportunity identification</li>
+          <li>Built and managed a profitable musical instrument resale business with margins of 200–300%</li>
+          <li>Managed the full business cycle: sourcing, pricing, restoration coordination, and sales</li>
+          <li>Developed commercial acumen in pricing, negotiation, and market opportunity identification</li>
         </ul>
       </div>
+    </section>
 
+    <!-- TRACK RECORD -->
+    <section class="section">
+      <div class="section-tag" data-animate>Track Record</div>
+      <h2 class="section-title" data-animate data-delay="100">Results That Speak</h2>
+
+      <div class="results-hero" data-animate data-delay="150">
+        <div class="results-label">Client Monthly Revenue — Before vs. After</div>
+        <div class="results-numbers">
+          <span class="num">$10K–$40K</span>
+          <span class="arrow">→</span>
+          <span class="num gold">$150K–$200K</span>
+        </div>
+        <div class="results-sub">Achieved across multiple SMB clients through structured sales system implementation</div>
+      </div>
+
+      <div class="outcome-grid">
+        <div class="outcome-card" data-animate data-delay="100">
+          <strong>Predictable Pipeline</strong>
+          <p>Full visibility into every stage — no more guessing what's closing and when.</p>
+        </div>
+        <div class="outcome-card" data-animate data-delay="200">
+          <strong>Conversion Growth</strong>
+          <p>Consistent improvement across all funnel stages through structured tracking and iteration.</p>
+        </div>
+        <div class="outcome-card" data-animate data-delay="300">
+          <strong>6-Person Sales Team Built</strong>
+          <p>Recruited and structured across multiple timezones — wider reach, more markets, more clients.</p>
+        </div>
+        <div class="outcome-card" data-animate data-delay="400">
+          <strong>Founder Freed</strong>
+          <p>Removed from day-to-day sales operations. System runs and scales without them.</p>
+        </div>
+      </div>
     </section>
 
     <!-- SKILLS -->
     <section class="section">
-      <div class="section-tag">Capabilities</div>
-      <h2 class="section-title">Skills</h2>
+      <div class="section-tag" data-animate>Capabilities</div>
+      <h2 class="section-title" data-animate data-delay="100">Skills</h2>
 
-      <div class="skills-group">
-        <div class="skills-label">Analytical &amp; Evaluation</div>
+      <div class="skills-group" data-animate data-delay="100">
+        <div class="skills-label">Analytics &amp; Evaluation</div>
         <div class="skills-tags">
           <span class="skill-tag">Critical Thinking</span>
           <span class="skill-tag">Structured Evaluation</span>
+          <span class="skill-tag">Quality Control</span>
           <span class="skill-tag">AI Output Review</span>
-          <span class="skill-tag">Content Quality Rating</span>
-          <span class="skill-tag">Search Relevance Evaluation</span>
+          <span class="skill-tag">Content Evaluation</span>
+          <span class="skill-tag">Search Relevance Analysis</span>
           <span class="skill-tag">Data-Driven Decision Making</span>
         </div>
       </div>
 
-      <div class="skills-group">
+      <div class="skills-group" data-animate data-delay="200">
         <div class="skills-label">Sales &amp; Business</div>
         <div class="skills-tags">
           <span class="skill-tag">Consultative Selling</span>
-          <span class="skill-tag">Revenue Operations</span>
-          <span class="skill-tag">Sales Funnel Optimization</span>
+          <span class="skill-tag">Full Client Lifecycle</span>
+          <span class="skill-tag">Revenue Management</span>
+          <span class="skill-tag">Sales Funnel Optimisation</span>
           <span class="skill-tag">Lead Generation</span>
           <span class="skill-tag">KPI Frameworks</span>
-          <span class="skill-tag">Stakeholder Engagement</span>
+          <span class="skill-tag">Forecasting</span>
+          <span class="skill-tag">Stakeholder Management</span>
           <span class="skill-tag">Negotiation</span>
         </div>
       </div>
 
-      <div class="skills-group">
+      <div class="skills-group" data-animate data-delay="300">
         <div class="skills-label">Tools</div>
         <div class="skills-tags">
           <span class="skill-tag">Salesforce</span>
@@ -422,33 +633,33 @@
     <div class="two-col">
 
       <section class="section">
-        <div class="section-tag">Languages</div>
-        <h2 class="section-title">Languages</h2>
-        <div class="lang-row">
+        <div class="section-tag" data-animate>Languages</div>
+        <h2 class="section-title" data-animate data-delay="100">Languages</h2>
+        <div class="lang-row" data-animate data-delay="100">
           <span class="lang-name">English</span>
           <span class="lang-level">Native-level</span>
         </div>
-        <div class="lang-row">
+        <div class="lang-row" data-animate data-delay="200">
           <span class="lang-name">French</span>
           <span class="lang-level">Native-level</span>
         </div>
-        <div class="lang-row">
+        <div class="lang-row" data-animate data-delay="300">
           <span class="lang-name">Russian</span>
           <span class="lang-level">Native</span>
         </div>
       </section>
 
       <section class="section">
-        <div class="section-tag">Education</div>
-        <h2 class="section-title">Education</h2>
-        <div class="edu-item">
+        <div class="section-tag" data-animate>Education</div>
+        <h2 class="section-title" data-animate data-delay="100">Education</h2>
+        <div class="edu-item" data-animate data-delay="100">
           <div>
             <div class="edu-school">Collège André-Laurendeau</div>
             <div class="edu-degree">DEC — Business &amp; Commerce</div>
           </div>
           <div class="edu-date">2021 — 2023</div>
         </div>
-        <div class="edu-item">
+        <div class="edu-item" data-animate data-delay="200">
           <div>
             <div class="edu-school">High School Diploma</div>
             <div class="edu-degree">Montreal, Quebec, Canada</div>
@@ -461,20 +672,24 @@
 
     <!-- CONTACT -->
     <section class="section">
-      <div class="section-tag">Get in Touch</div>
-      <h2 class="section-title">Contact</h2>
+      <div class="section-tag" data-animate>Get in Touch</div>
+      <h2 class="section-title" data-animate data-delay="100">Contact</h2>
       <div class="contact-grid">
-        <div class="contact-item">
+        <div class="contact-item" data-animate data-delay="100">
           <span class="contact-label">Email</span>
           <a href="mailto:rujinvladimir12@gmail.com">rujinvladimir12@gmail.com</a>
         </div>
-        <div class="contact-item">
+        <div class="contact-item" data-animate data-delay="150">
+          <span class="contact-label">Telegram</span>
+          <span>@vladimirrujin</span>
+        </div>
+        <div class="contact-item" data-animate data-delay="200">
           <span class="contact-label">LinkedIn</span>
           <a href="https://www.linkedin.com/in/vladimir-rujin-396937250/" target="_blank">linkedin.com/in/vladimir-rujin-396937250</a>
         </div>
-        <div class="contact-item">
+        <div class="contact-item" data-animate data-delay="250">
           <span class="contact-label">Location</span>
-          <span>Montreal, Quebec, Canada · Available remotely worldwide</span>
+          <span>Montreal, Canada (currently in Moscow, Russia) · Remote worldwide</span>
         </div>
       </div>
     </section>
@@ -482,8 +697,20 @@
   </main>
 
   <footer>
-    &copy; 2026 Vladimir Rujin &nbsp;·&nbsp; AI Evaluation Specialist &amp; Business Consultant
+    &copy; 2026 Vladimir Rujin &nbsp;·&nbsp; Sales &amp; Business Development
   </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
